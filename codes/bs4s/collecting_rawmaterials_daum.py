@@ -9,11 +9,10 @@ soup = BeautifulSoup(response.text, 'html.parser')
 commodities_names = soup.select('td.tit')
 
 for commodities in commodities_names:
-    print(f'Tag : {commodities}, Currency Price {commodities.text}')
+    print(f'Commodities Names {commodities.text}')
+   
     pass
-
 pass
-
 # #boxCommodities .box_contents div table tbody tr td.pR span.num
 
 
