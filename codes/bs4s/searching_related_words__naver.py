@@ -23,7 +23,7 @@ keyword = input('input search word : ')
 
 # 브라우저 주소창
 
-
+    
 url = f'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query={keyword}'
 response = requests.get(url)
 
@@ -31,7 +31,7 @@ from bs4 import BeautifulSoup # html 해석기
 
 soup = BeautifulSoup(response.text, 'html.parser')
 
-titles = soup.select('faSBppRge_X6pwl2rZi4 _CVSsJs5H34NvpNMMCIA')
+titles = soup.select('div.faSBppRge_X6pwl2rZi4._CVSsJs5H34NvpNMMCIA')
 
 
 for title in titles : 
