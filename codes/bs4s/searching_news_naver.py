@@ -18,7 +18,8 @@
 #     respone = requests.get(f'https://news.naver.com/section/101')
 #     soup = BeautifulSoup(respone.text, 'html.parser')
 #     titles_link = soup.select('._PERSIST_META > div > ul > li > div > div > div.sa_text > a > strong')
-#     for title_link in titles_link:
+#     
+#   for title_link in titles_link:
 #         print(f'title : {title_link.text}')
 #         news_content_url = title_link.attrs['href']
 #         print(f'news_content_url : {news_content_url}')
