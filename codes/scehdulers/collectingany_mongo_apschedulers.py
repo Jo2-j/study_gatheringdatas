@@ -1,9 +1,9 @@
 
 from apscheduler.schedulers.background import BackgroundScheduler #from쪽이 더 큰 단위니까 점 앞에.
 
-from ssgplayers import scrapping_ssg as ssg
+from ssgplayers import scrapping_ssg as ssg # ssg선수들 모아오는 function 그리고 그걸 class로 만듬(ssgplayers)
 
-from underkg_news import underkg as unkg
+from underkg_news import underkg as unkg # underkgnews 모아오는 function 그리고 그걸 class로 만듬(unkg)
 
 # cheduler = BackgroundScheduler() BackgroundScheduler 라는 거는 class인데 왜 괄호를 쓸까? 
 # 사실 class에는 init라는 function이 내재 되어있다. 
