@@ -18,15 +18,15 @@ def main(message):
    
     # 스케쥴러 등록
     scheduler = BackgroundScheduler()
-    scheduler.add_job(ssg.scrappingPitchers, trigger = 'interval', seconds = 1, coalesce = True, max_instances = 1)
-    scheduler.add_job(unkg.do_scrapping, trigger = 'interval', seconds = 1, coalesce = True, max_instances = 1)
+    scheduler.add_job(ssg.scrappingPitchers, trigger = 'interval', seconds = 30, coalesce = True, max_instances = 1) # 30초 마다 
+    scheduler.add_job(unkg.do_scrapping, trigger = 'interval', seconds = 30, coalesce = True, max_instances = 1)
     scheduler.start()
 
     # 정지 예방
 
     count = 0
     while True:
-        time.sleep(1)
+        time.sleep(30)
 
         count = count + 1
         pass
