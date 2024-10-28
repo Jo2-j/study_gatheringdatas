@@ -14,12 +14,14 @@ temp = 'temp message'
 
 import time
 
-def main(message):
+def main():
    
     # 스케쥴러 등록
     scheduler = BackgroundScheduler()
-    scheduler.add_job(ssg.scrappingPitchers, trigger = 'interval', seconds = 30, coalesce = True, max_instances = 1) # 30초 마다 
-    scheduler.add_job(unkg.do_scrapping, trigger = 'interval', seconds = 30, coalesce = True, max_instances = 1)
+    scheduler.add_job(ssg.scrappingPitchers, trigger = 'interval', seconds = 1, coalesce = True, max_instances = 1) # 30초 마다 
+    scheduler.add_job(ssg.main, trigger = 'interval', seconds = 1, coalesce = True, max_instances = 1) # 30초 마다 
+    scheduler.add_job(unkg.do_scrapping, trigger = 'interval', seconds = 1, coalesce = True, max_instances = 1)
+    scheduler.add_job(unkg.main, trigger = 'interval', seconds = 1, coalesce = True, max_instances = 1)
     scheduler.start()
 
     # 정지 예방
@@ -34,7 +36,7 @@ def main(message):
     return True
 
 if __name__ == '__main__':
-    main('SSG PLAYERS')
+    main()
     pass
 
 # type(gf)
