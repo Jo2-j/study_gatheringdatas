@@ -8,15 +8,17 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from pymongo import MongoClient
 
-def insertDB(abcd):
 # MongoDB 서버에 연결 : Both connect in case local and remote
-    client = MongoClient('mongodb://192.168.0.63:27017/')
+client = MongoClient('mongodb://192.168.0.63:27017/') # 같은 주소에 갈거면 def 밖에 정해주고 쓰자 왜냐면 같은 곳으로 가니까
+
+def insertDB(abcd):
+
     # 'mydatabase' 데이터베이스 선택 (없으면 자동 생성)
     db = client['joesDB']
     # 'users' 컬렉션 선택 (없으면 자동 생성)
     collection = db['underKgNews']
 
-    DBresult = collection.insert_one(abcd)
+    DBresult = collection.insert_one(abcd) # insert_one과 many의 차이
     # 입력된 문서의 ID 출력
     print('Inserted user id:', DBresult.inserted_id)
 
