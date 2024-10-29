@@ -14,7 +14,7 @@ capabilities = browser.capabilities
 
 # - 주소 입력(https://www.w3schools.com/)
 
-browser.get("https://www.daum.net//")
+browser.get("https://www.w3schools.com")
 
 # - 가능 여부에 대한 OK 받음
 pass
@@ -24,3 +24,11 @@ html = browser.page_source
 print(html)
 
 from selenium.webdriver.common.by import By
+element_value = f'body'
+element_body = browser.find_element(by=By.CSS_SELECTOR, value=element_value)
+
+from selenium.webdriver.common.keys import Keys
+import time
+element_body.send_keys(Keys.PAGE_DOWN)
+pass
+

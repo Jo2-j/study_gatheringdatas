@@ -1,5 +1,5 @@
 # - 수집 데이터 mongodb에 insert
-# - 항목 : 제목, 날짜, 읽은 수, 기사본문
+# - 항목 : 제목, 날짜, 읽은 수
 # - github, remote mongo url 공유
 
 from selenium import webdriver
@@ -11,16 +11,18 @@ from pymongo import MongoClient
 # MongoDB 서버에 연결 : Both connect in case local and remote
 client = MongoClient('mongodb://192.168.0.63:27017/') # 같은 주소에 갈거면 def 밖에 정해주고 쓰자 왜냐면 같은 곳으로 가니까
 
-def insertDB(abcd):
+def insertDB(abcd): # 먼저 선언을 해야함, 왜냐하면 def를 먼저하고 해야지 아래의 것에서 올리기때문에, 아니 그렇게 어렵게 생각하기 어려우면 내가 왜 이거를 적었는지 확인해보자
 
     # 'mydatabase' 데이터베이스 선택 (없으면 자동 생성)
     db = client['joesDB']
     # 'users' 컬렉션 선택 (없으면 자동 생성)
     collection = db['underKgNews']
 
-    DBresult = collection.insert_one(abcd) # insert_one과 many의 차이
+    DBresult = collection.insert_one(abcd) # insert_one과 many의 차이 또한 def는 그냥 선언이기에 안에 들어가는거는 위치를 나타내므로 아래 ()안에 있는 값이랑 같게 나와야함
     # 입력된 문서의 ID 출력
     print('Inserted user id:', DBresult.inserted_id)
+
+# def insertDB_Many(abcd): 생각해보기.. one - 딕셔너리 > many는 one(딕셔너리)의 합 - 리스트
 
 webdriver_manager_directory = ChromeDriverManager().install()
 
@@ -61,3 +63,10 @@ for index, element_bundle in enumerate(news_list):
     print(results)
     insertDB(dic_result)
     pass
+
+
+# 차이점 요약
+# 메서드	사용 용도	입력 형식	반환 값
+# insert_one	단일 문서 삽입	딕셔너리	삽입된 문서의 _id (단일 ID)
+# insert_many	다중 문서 삽입	딕셔너리 리스트	삽입된 문서들의 _id 리스트
+# dic_result는 딕셔너리, results는 리스트.. 그러면 dic은 one으로 ? results는 many ?

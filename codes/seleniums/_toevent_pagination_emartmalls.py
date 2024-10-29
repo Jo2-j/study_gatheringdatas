@@ -13,8 +13,7 @@ browser = webdriver.Chrome(service=ChromeService(webdriver_manager_directory))
 capabilities = browser.capabilities
 
 # - 주소 입력(https://www.w3schools.com/)
-
-browser.get("https://www.daum.net//")
+browser.get("https://emart.ssg.com/disp/category.ssg?dispCtgId=6000214033")
 
 # - 가능 여부에 대한 OK 받음
 pass
@@ -24,3 +23,10 @@ html = browser.page_source
 print(html)
 
 from selenium.webdriver.common.by import By
+
+page_list = browser.find_elements(by=By.CSS_SELECTOR, value='#area_itemlist > div.paginate > div > a') # #area_itemlist > div.paginate > div > a
+
+for page_number in range(1, len(page_list)-1):
+    pass
+pass
+
