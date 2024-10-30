@@ -1,0 +1,82 @@
+# - 검색어 따른 상품 정보 전부 수집
+
+# 해야하는 행동(class.function()) :
+# 0. 홈페이지 접속 및, 관련 from, import, tag정의하기
+# 1. 상품클릭
+# 2. 상품명, 가격, 상품상세 정보 가져오고 저장
+# 3. 뒤로가기
+# 4. 해당 페이지 상품 끝까지 반복
+# 5. 페이지 마지막 버튼만 누르기(다음페이지)
+# 6. 계속 반복후
+# 7. 마지막 페이지(버튼 없어질때)까지 반복 후 나오기
+# - 항목 : 상품명: div.pd-widget1__info-box > h2 , 가격: section.pd-price strong , 상품상세: #m2root
+# - github, remote mongo uri 공유
+
+
+# ------------------------------------
+# 0. 홈페이지 접속 및, 관련 from, import, tag정의하기
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup
+from selenium.webdriver import ActionChains
+import time
+import requests
+
+
+webdriver_manager_directory = ChromeDriverManager().install()
+browser = webdriver.Chrome(service=ChromeService(webdriver_manager_directory))
+capabilities = browser.capabilities
+browser.get("https://www.lotteon.com/search/search/search.ecn?render=search&platform=pc&q=할로윈")
+
+next_page_click_button = f'a.srchPaginationNext' # 페이지칸
+item_title = f'div.pd-widget1__info-box > h2'# 제목
+item_price = f'section.pd-price strong' # 가격
+item_detail = f'#m2root' # 상세페이지 내용
+
+# 1. 상품클릭
+
+common_item_url = f'div.s-goods-grid.s-goods-grid--col-4 > ul > li'
+# element_value = f'#recaptcha-anchor > div.recaptcha-checkbox-border'
+
+# for index, goods in enumerate(goods_url):
+#     time.sleep(1)
+#     browser.get(goods_url)
+#     browser.back()
+#     time.sleep(1)
+while True:
+    items = browser.find_element(by=By.CSS_SELECTOR, value=common_item_url)
+    
+    for item in items:
+        item.click('common_item_url')
+        browser.implicitly_wait(10)
+
+
+
+# item_titles = browser.find_elements(by=By.CSS_SELECTOR, value=item_title)
+# item_prices = browser.find_elements(by=By.CSS_SELECTOR, value=item_price)
+# item_details = browser.find_elements(by=By.CSS_SELECTOR, value=item_detail)
+
+
+
+
+
+
+# # page_list = browser.find_elements(by=By.CSS_SELECTOR, value=next_page_click_button)
+
+# # 다음페이지 있는 동안 무한대
+# # 클릭 하는 버튼이 없으면 종료
+# while True:
+#     browser.implicitly_wait(10) # 타임슬립 너가 알아서 잘 해라
+#     next_page_click_button.click()
+#     browser.implicitly_wait(10) # 타임슬립 너가 알아서 잘 해라
+#     #time.sleep(1)
+#     # current_height = browser.execute_script(f'return document.documentElement.scrollTop')
+#     # if previous_height == current_height:
+#     #     break
+#     # previous_height = current_height
+#     pass
+# pass
