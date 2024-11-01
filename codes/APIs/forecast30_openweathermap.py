@@ -30,7 +30,7 @@ def WthDat(city):
             collection = database['coordinatesByLocationOnName']
             result = collection.insert_many(content)
             pass
-            return LatANDLon(content[0]['lat'], content[0]['lon'])
+            return LatANDLon(content[0]['lat'], content[0]['lon']) # return은 결국 function콜, 즉 행동하는것 그러면 어떤 파라미터를 쓸것이냐인데, content안에 있는 
                 
         else:
             print(f'result empty : {response.text}')
