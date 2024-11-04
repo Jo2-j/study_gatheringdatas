@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~8.8.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+#deck-container canvas {
+  z-index: 1;
+  background: none;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  </body>
+  <script>
+    const container = document.getElementById('deck-container');
+    const jsonInput = {
+  "initialViewState": {
+    "latitude": 37.551998138,
+    "longitude": 126.91284027200001,
+    "zoom": 10
+  },
+  "layers": [
+    {
+      "@@type": "ScatterplotLayer",
+      "data": [
+        {
+          "parkingBikeTotCnt": 60,
+          "stationLatitude": 37.5556488,
+          "stationLongitude": 126.91062927,
+          "stationName": "102. \ub9dd\uc6d0\uc5ed 1\ubc88\ucd9c\uad6c \uc55e"
+        },
+        {
+          "parkingBikeTotCnt": 18,
+          "stationLatitude": 37.55495071,
+          "stationLongitude": 126.91083527,
+          "stationName": "103. \ub9dd\uc6d0\uc5ed 2\ubc88\ucd9c\uad6c \uc55e"
+        },
+        {
+          "parkingBikeTotCnt": 15,
+          "stationLatitude": 37.55073929,
+          "stationLongitude": 126.91508484,
+          "stationName": "104. \ud569\uc815\uc5ed 1\ubc88\ucd9c\uad6c \uc55e"
+        },
+        {
+          "parkingBikeTotCnt": 0,
+          "stationLatitude": 37.55000687,
+          "stationLongitude": 126.91482544,
+          "stationName": "105. \ud569\uc815\uc5ed 5\ubc88\ucd9c\uad6c \uc55e"
+        },
+        {
+          "parkingBikeTotCnt": 5,
+          "stationLatitude": 37.54864502,
+          "stationLongitude": 126.91282654,
+          "stationName": "106. \ud569\uc815\uc5ed 7\ubc88\ucd9c\uad6c \uc55e"
+        }
+      ],
+      "getFillColor": "@@=[255-shared, 255-shared, 255]",
+      "getPosition": "@@=[stationLongitude, stationLatitude]",
+      "getRadius": "@@=60 * parkingBikeTotCnt / 100",
+      "id": "b109a42b-87db-49dc-88e3-e8c16244ec35",
+      "pickable": true
+    }
+  ],
+  "mapProvider": "carto",
+  "mapStyle": "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+  "views": [
+    {
+      "@@type": "MapView",
+      "controller": true
+    }
+  ]
+};
+    const tooltip = {'text': '대여소 : {stationName}\n현재 주차 대수 : {parkingBikeTotCnt}'};
+    const customLibraries = null;
+    const configuration = null;
+
+    const deckInstance = createDeck({
+                  container,
+      jsonInput,
+      tooltip,
+      customLibraries,
+      configuration
+    });
+
+  </script>
+</html>
