@@ -25,7 +25,7 @@ def getBikelistInSeoul():
                 pass
         else : # 만약 200 코드가 아니면 pass 후 에러 메세지 나오게 끔 추후에 만들수 있음
             pass # 에러 메세지 출력    
-    return datasetBikesinSeoul
+    return datasetBikesinSeoul # 값이 필요할때, 즉, 여기에서 나온 값을 다른데에서 사용한다고 할때 return으로 값을 저장하면서 내보낸다 < 이 점에 print와는 다른점
 
 def makeMap(bikelist):
     df = pd.DataFrame(bikelist)
@@ -37,7 +37,7 @@ def makeMap(bikelist):
     defaultLoc = pdk.ViewState(latitude=latMean, longitude=longMean, zoom=10)
     map = pdk.Deck(layers=[layer], initial_view_state=defaultLoc, tooltip={"text":"대여소 : {Station}\n현재 주차 대수 : {UnusedTotNum}"}) # tooltip은 definition에서 =True 형식으로 나오는데 이렇게 쓰는 이유?
     map.to_html("./seoul_bike.html") # 위 tooltip 처럼 to_html형식이 다르게 적혀 있는데 어떻게 된건지?  
-    return
+    return # 여기서 return 뒤에 값을 말을 안한거는 이 값이 그냥 나오면 되는거지 다른데에서 사용하지는 않기에
 
 if __name__ == '__main__':
     bikelist = getBikelistInSeoul()
