@@ -19,6 +19,15 @@ def main():
 
     browser.get("https://cafe.naver.com/sbabellows")
 
+    # div.board-list > div > a
+    import time
+    time.sleep(2)
+    cafeList = browser.switch_to.frame("cafe_main")
+    browser.find_elements(by=By.CSS_SELECTOR, value='div.board-list > div > a')
+
+    for index, row in enumerate(cafeList): #enumerate로 받았기에 index
+        print(f'title : {row.text}')
+        pass
     return
 
 if __name__ == '__main__':
